@@ -41,17 +41,10 @@ function addBookToLibrary() {
 function getContent() {
     myLibrary.forEach((book) => {
         const bookInf = document.createElement('div');
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = "Remove Button"
-        removeBtn.setAttribute('id', 'remove-btn')
         bookInf.setAttribute('class', 'book')
         bookInf.textContent = book.info();
         bookInf.append(removeBtn);
         myContainer.append(bookInf);
-
-        removeBtn.addEventListener('click', function() {
-            this.parentElement.remove();
-        });
     });
 }
 
