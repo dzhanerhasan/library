@@ -94,12 +94,28 @@ header button {
     align-items: center;
 }
 
-.book button {
+
+#remove-button, #toggle-button {
     padding: 10px 20px;
-    background-color: red;
     border: none;
     border-radius: 10px;
     color: white;
     font-weight: bold;
     cursor: pointer;
+}
+
+
+#remove-button:hover, #toggle-button:hover {
+    filter: brightness(80%);
+}
+
+
+#remove-button {
+    background-color: red;
+}
+
+
+#toggle-button {
+    background-color: royalblue;
+    margin-right: 5px;
 }

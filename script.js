@@ -38,13 +38,53 @@ function addBookToLibrary() {
 };
 
 
+function updateContent() {
+    myContainer.textContent = "";
+    getContent();
+}
+
+
 function getContent() {
+    let index = 0;
     myLibrary.forEach((book) => {
         const bookInf = document.createElement('div');
         bookInf.setAttribute('class', 'book')
         bookInf.textContent = book.info();
-        bookInf.append(removeBtn);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.setAttribute('id', 'remove-button')
+        removeBtn.textContent = 'Remove Book'
+        removeBtn.dataset.position = index;
+
+        const toggleReadBtn = document.createElement('button');
+        toggleReadBtn.setAttribute('id', 'toggle-button')
+        toggleReadBtn.dataset.position = index;
+
+        if (book.read) {
+                toggleReadBtn.textContent = 'Not Read';
+        } else {
+            toggleReadBtn.textContent = 'Read';
+        }
+
+        index++;
+
+        const buttonsDiv = document.createElement('div');
+
+        buttonsDiv.append(toggleReadBtn);
+        buttonsDiv.append(removeBtn);
+        bookInf.append(buttonsDiv);  
         myContainer.append(bookInf);
+
+        removeBtn.addEventListener('click', () => {
+            myLibrary.splice(removeBtn.dataset.position, 1);
+            updateContent()
+        });
+
+        toggleReadBtn.addEventListener('click', function() {
+            let currObj = myLibrary[this.dataset.position];
+            currObj.read = !currObj.read;
+            updateContent()
+        });
     });
 }
 
